@@ -15,5 +15,27 @@ class ApplicationController < Sinatra::Base
       } }
     })
   end
+  delete '/games/:id' do
+    game = Game.find(params[:id])
+    game.destroy
+    game.to_json
+  end
+
+  post '/games' do
+    game = Game.create(params)
+    games = Game.all
+    games.to_json
+  end
+
+
+  patch '/games/:id' do
+    game = Game.find(params[:id])
+    game.update(params)
+    game.to_json
+  end
+
+
+
+  
 
 end
